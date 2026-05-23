@@ -22,23 +22,44 @@ app.use(express.json());
 
 // DB Connection
 // const db = mysql.createConnection({
+//   host: process.env.DB_HOST || "localhost",
+//   port: process.env.DB_PORT || 3306,
+//   user: process.env.DB_USER || "root",
+//   password: process.env.DB_PASSWORD || "",
+//   database: process.env.DB_NAME || "msvm_school",
+//   ssl: {
+//     rejectUnauthorized: false
+//   }
+// });
+
+// db.connect(err => {
+//   if (err) {
+//     console.log("DB Error:", err);
+//     return;
+//   }
+//   console.log("MySQL Connected!");
+
 const db = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   port: process.env.DB_PORT || 3306,
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "msvm_school",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
   ssl: {
     rejectUnauthorized: false
   }
 });
 
-db.connect(err => {
+db.query("SELECT 1", (err) => {
   if (err) {
     console.log("DB Error:", err);
-    return;
+  } else {
+    console.log("MySQL Pool Connected!");
   }
-  console.log("MySQL Connected!");
+});
 
   // Create users table if not exists
   const createTable = `CREATE TABLE IF NOT EXISTS users (
