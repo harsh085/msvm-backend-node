@@ -8,7 +8,7 @@ require("dotenv").config();
 const app = express();
 // app.use(cors());
 app.use(cors({
-  origin: "https://your-vercel-url.vercel.app"
+  origin: "https://msvm-frontend-angular.vercel.app"
 }));
 app.use(express.json());
 
