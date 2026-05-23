@@ -12,12 +12,20 @@ app.use(cors({
 }));
 app.use(express.json());
 
+// // DB Connection
+// const db = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "msvm_school"
+// });
+
 // DB Connection
 const db = mysql.createConnection({
-  host: "localhost",
+  host: "mysql.railway.internal",
   user: "root",
-  password: "",
-  database: "msvm_school"
+  password: "mYuhZgZCxppNBLYegqKLKZiwezhgPqWY",
+  database: "railway"
 });
 
 db.connect(err => {
