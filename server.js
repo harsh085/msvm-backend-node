@@ -2,10 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2");
 const bcrypt = require("bcryptjs");
+const PORT = process.env.PORT || 5000;
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: "https://your-vercel-url.vercel.app"
+}));
 app.use(express.json());
 
 // DB Connection
@@ -117,6 +121,10 @@ app.post("/students", (req, res) => {
   });
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+// app.listen(5000, () => {
+//   console.log("Server running on port 5000");
+// });
+
+app.listen(PORT, () => {
+  console.log("Server running");
 });
