@@ -22,10 +22,14 @@ app.use(express.json());
 
 // DB Connection
 const db = mysql.createConnection({
-  host: "mysql.railway.internal",
-  user: "root",
-  password: "mYuhZgZCxppNBLYegqKLKZiwezhgPqWY",
-  database: "railway"
+  host: process.env.MYSQLHOST || "localhost",
+  port: process.env.MYSQLPORT || 3306,
+  user: process.env.MYSQLUSER || "root",
+  password: process.env.MYSQLPASSWORD || "",
+  database: process.env.MYSQLDATABASE || "msvm_school",
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 db.connect(err => {
