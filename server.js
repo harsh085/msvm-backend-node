@@ -59,7 +59,6 @@ db.query("SELECT 1", (err) => {
   } else {
     console.log("MySQL Pool Connected!");
   }
-});
 
   // Create users table if not exists
   const createTable = `CREATE TABLE IF NOT EXISTS users (
