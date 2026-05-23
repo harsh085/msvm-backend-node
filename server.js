@@ -21,7 +21,8 @@ app.use(express.json());
 // });
 
 // DB Connection
-const db = mysql.createConnection({
+// const db = mysql.createConnection({
+const db = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   port: process.env.DB_PORT || 3306,
   user: process.env.DB_USER || "root",
